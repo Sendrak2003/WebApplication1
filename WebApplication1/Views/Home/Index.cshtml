@@ -1,0 +1,56 @@
+﻿@model string
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Simple Video Example</title>
+        <script type="text/javascript">
+            function hidecontrol(e) {
+                // Set controls to true or false based on their current state
+                var video = document.getElementById('video1');
+                video.crossOrigin = 'anonymous';
+                if (video.controls == true) {
+                    // Controls are binary, true if there, false if not
+                    video.removeAttribute("controls");
+                    e.innerHTML = "Show controls";
+                } else {
+                    // Controls are binary, true if there, false if not
+                    video.setAttribute("controls", true);
+                    e.innerHTML = "Hide controls";
+                }
+            }
+
+            function playVideo(e) {
+
+                var video = document.getElementById('video1');      //video element
+                //  Toggle between play and pause based on the paused property
+                if (video.paused) {
+                    var input = document.getElementById('videoFile');   //text box
+                    if (input.value) {
+                    var path = `@Url.Content("~/music/${input.value}")`;
+                        //  Only load a video file when the text field changes
+                        if (input.value != video.src) {
+                        video.src =path;
+                        }
+                        video.play();
+                        e.innerHTML = "Pause";
+                    }
+                } else {
+                    video.pause();
+                    e.innerHTML = "Play";
+                }
+
+            }
+        </script>
+    </head>
+    <body>
+        <video id="video1"  controls>HTML5 video is not supported</video>
+        <br />
+        <input type="text" id="videoFile" size="60" placeholder="Enter video file URL here" />
+        <button onclick="playVideo(this);">Play</button>
+        <button onclick="hidecontrol(this);">Hide controls</button>
+    </body>
+    </html>

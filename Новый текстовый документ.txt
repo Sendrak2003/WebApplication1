@@ -1,0 +1,1 @@
+ Scaffold-DbContext "Server=COMPUTER;Database=Media_library;Trusted_Connection=True;TrustServerCertificate=True"  Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -ContextDir Data -DataAnnotations
